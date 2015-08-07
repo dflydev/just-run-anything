@@ -1,0 +1,26 @@
+
+function just_run_whatever {
+        WHATEVER="$1"
+        TEST_PATHS=($2)
+
+        IFS=":"
+        for TEST_PATH in "${TEST_PATHS[@]}"
+        do
+                TEST_FILE="${TEST_PATH}/${WHATEVER}"
+                if [ -x "${TEST_FILE}" ]
+                then
+                        "${TEST_FILE}" "${@:3}"
+                        return $?
+                fi
+        done
+
+        WHATEVER_ON_PATH="$(type -P "${WHATEVER}")"
+        if [ -n "${WHATEVER_ON_PATH}" ]
+        then
+                "${WHATEVER_ON_PATH}" "${@:3}"
+                return $?
+        fi
+
+        echo "${WHATEVER} not found in any location we expect"
+        return 127
+}

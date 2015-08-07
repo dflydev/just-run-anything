@@ -1,0 +1,5 @@
+PHPCS_PATH=vendor/bin:bin
+
+function phpcs {
+        just_run_whatever phpcs "${PHPCS_PATH}" "$@"
+}

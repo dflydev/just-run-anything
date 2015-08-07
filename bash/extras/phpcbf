@@ -1,0 +1,5 @@
+PHPCBF_PATH=vendor/bin:bin
+
+function phpcbf {
+        just_run_whatever phpcbf "${PHPCBF_PATH}" "$@"
+}

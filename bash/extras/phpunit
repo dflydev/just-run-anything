@@ -1,0 +1,5 @@
+PHPUNIT_PATH=vendor/bin:bin
+
+function phpunit {
+        just_run_whatever phpunit "${PHPUNIT_PATH}" "$@"
+}
